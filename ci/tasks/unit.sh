@@ -1,2 +1,2 @@
 #!/bin/sh
-./mvnw test
+demo-onlinestore-service/mvnw test
