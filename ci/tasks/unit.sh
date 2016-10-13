@@ -1,2 +1,3 @@
 #!/bin/sh
-demo-onlinestore-service/mvnw test
+cd demo-onlinestore-service
+./mvnw test
