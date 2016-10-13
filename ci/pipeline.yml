@@ -1,0 +1,17 @@
+---
+resources:
+  - name: demo-onlinestore-service
+    type: git
+    source:
+      uri: {{github-uri}}
+      branch: {{github-branch}}
+    check_every: 10s # for demo
+
+jobs:
+  - name: unit-test
+    public: true
+    plan:
+      - get: demo-onlinestore-service
+        trigger: true
+      - task: unit
+        file: demo-onlinestore-service/ci/tasks/unit.yml
