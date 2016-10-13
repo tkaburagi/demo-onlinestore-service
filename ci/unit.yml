@@ -6,7 +6,7 @@ image_resource:
     repository: java
     tag: 8-jdk-alpine    
 inputs:
-  - name: demo-onlinestore-service-git
+  - name: demo-onlinestore-service
 
 run:
   path: demo-onlinestore-service/ci/tasks/unit.sh
