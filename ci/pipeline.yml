@@ -28,6 +28,16 @@ resources:
 
       regexp: concourse/demo.jar
 
+  - name: cf-push
+    type: cf
+    source:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-org}}
+      space: {{cf-space}}
+      skip_cert_check: true
+
 jobs:
   - name: unit-test
     public: true
@@ -47,4 +57,15 @@ jobs:
         file: demo-onlinestore-service/ci/tasks/build.yml
       - put: release
         params: 
-          file: output/demo.jar
+          file: build/demo.jar
+
+  - name: cf-push
+    public: true
+    serial: true
+    plan:
+      - get: release
+        trigger: true
+      - put: cf-push
+        params:
+          manifest:
+          path: 
