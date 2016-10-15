@@ -58,11 +58,11 @@ jobs:
         file: demo-onlinestore-service/ci/tasks/build.yml
       - put: upload-artifact
         params: 
-          file: build/demo.jar
+          file: build/demo-onlinestore-service.jar
       - put: cf-push
         params:
           manifest: demo-onlinestore-service
-          path: build/demo.jar
+          path: build/demo-onlinestore-service.jar
 
   - name: smoke-test
     public: true
