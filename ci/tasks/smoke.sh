@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sudo apt-get update
-sudo apt-get install curl
+apt-get update
+apt-get install curl
 
 sleep 10
 
