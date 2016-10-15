@@ -5,6 +5,7 @@ resource_types:
     source:
       repository: frodenas/gcs-resource
 
+######RESOURCE######
 resources:
   - name: demo-onlinestore-service
     type: git
@@ -13,10 +14,10 @@ resources:
       branch: {{github-branch}}
     check_every: 10s
 
-  - name: release
+  - name: upload-artifact
     type: gcs-resource
     source:
-      bucket: releases
+      bucket: concourse
       json_key: |
         {
           "private_key_id": "213719aecf87892e978dc8337f9d5fac219ba4f6",
@@ -25,7 +26,6 @@ resources:
           "client_id": "103698173895213728444",
           "type": "service_account"
         }
-
       regexp: concourse/demo.jar
 
   - name: cf-push
@@ -38,6 +38,7 @@ resources:
       space: {{cf-space}}
       skip_cert_check: true
 
+######JOB######
 jobs:
   - name: unit-test
     public: true
@@ -55,17 +56,26 @@ jobs:
         passed: [ unit-test ]
       - task: build
         file: demo-onlinestore-service/ci/tasks/build.yml
-      - put: release
+      - put: upload-artifact
         params: 
           file: build/demo.jar
-
-  - name: cf-push
-    public: true
-    serial: true
-    plan:
-      - get: release
-        trigger: true
       - put: cf-push
         params:
-          manifest:
-          path: 
+          manifest: demo-onlinestore-service
+          path: build/demo.jar
+
+  - name: smoke-test
+    public: true
+    plan:
+      - get: cf-push
+        trigger: true
+        passed: [ build-artifact ]
+      - put: demo-onlinestore-service
+      - task: smoke-test
+        file: demo-onlinestore-service/ci/tasks/smoke.yml
+
+  - name: promote-new-version 
+    plan:
+      - get: cf-push
+        trigger: true
+        passed: [ smoke-test ]
