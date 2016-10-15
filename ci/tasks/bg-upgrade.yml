@@ -7,7 +7,6 @@ image_resource:
     repository: pivotalservices/docker-concourse-cf-tools
     tag: "latest"
 
-
 inputs:
 - name: demo-onlinestore-service
 - name: current-app-info

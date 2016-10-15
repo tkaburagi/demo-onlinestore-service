@@ -5,9 +5,7 @@ set -xe
 pwd
 env
 
-cf api $cf_api --skip-ssl-validation
-
-cf login -u $cf_username -p $cf_password -o "$cf_org" -s "$cf_space"
+cf login -a $cf_api -u $cf_username -p $cf_password -o "$cf_organization" -s "$cf_space" --skip-ssl-validation
 
 cf apps
 
