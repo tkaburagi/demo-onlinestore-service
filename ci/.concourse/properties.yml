@@ -9,4 +9,4 @@ cf-api: https://api.local.pcfdev.io
 cf-username: user
 cf-password: pass
 cf-org: pcfdev-org
-cf-space: pcfdev-spaces
+cf-space: pcfdev-space
