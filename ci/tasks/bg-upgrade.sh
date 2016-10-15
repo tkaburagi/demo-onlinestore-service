@@ -21,14 +21,14 @@ export CURRENT_APP_COLOR=$(cat ./current-app-info/current-app.txt)
 export CURRENT_APP_HOSTNAME=$CURRENT_APP_COLOR-$PWS_APP_SUFFIX
 
 echo "Mapping main app route to point to $NEXT_APP_HOSTNAME instance"
-cf map-route $NEXT_APP_HOSTNAME $PWS_DOMAIN_NAME --hostname $MAIN_ROUTE_HOSTNAME
+cf map-route $NEXT_APP_HOSTNAME $app-domain --hostname $app-preffix
 
 cf routes
 
 echo "Removing previous main app route that pointed to $CURRENT_APP_HOSTNAME instance"
 
 set +e
-cf unmap-route $CURRENT_APP_HOSTNAME $PWS_DOMAIN_NAME --hostname $MAIN_ROUTE_HOSTNAME
+cf unmap-route $CURRENT_APP_HOSTNAME $app-domain --hostname $app-preffix
 set -e
 
 echo "Routes updated"

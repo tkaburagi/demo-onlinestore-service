@@ -60,14 +60,17 @@ jobs:
       - task: get-currentapp
         file: demo-onlinestore-service/ci/tasks/get-currentapp.yml
         params:
-           cf-api: {{cf-api}}
-           cf-username: {{cf-username}}
-           cf-password: {{cf-password}}
-           cf-organization: {{cf-org}}
-           cf-space: {{cf-space}}
+          cf_api: {{cf-api}}
+          cf_username: {{cf-username}}
+          cf_password: {{cf-password}}
+          cf_organization: {{cf-org}}
+          cf_space: {{cf-space}}
+          app_preffix: {{app-preffix}}
       ##保存されたテキストを使ってmanifest.ymlを編集する
       - task: edit-manifest
         file: demo-onlinestore-service/ci/tasks/edit-manifest.yml
+        params:
+          app_preffix: {{app-preffix}}
       - put: upload-artifact
         params: 
           file: build/demo-onlinestore-service.jar
@@ -86,11 +89,10 @@ jobs:
       - task: smoke-test
         file: demo-onlinestore-service/ci/tasks/smoke.yml
 
-  # - name: promote-new-version 
-  #   plan:
-  #     - get: cf-push
-  #       trigger: true
-  #       passed: [ smoke-test ]
-  #     - put: demo-onlinestore-service
-  #     - task: cf
-  #       file: demo-onlinestore-service/ci/tasks/cf-map.yml
+  - name: promote-new-version 
+    plan:
+      - get: demo-onlinestore-service
+        trigger: true
+        passed: [ smoke-test ]
+      - task: bg-upgrade
+        file: demo-onlinestore-service/ci/tasks/bg-upgrade.yml

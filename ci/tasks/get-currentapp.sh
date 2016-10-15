@@ -5,13 +5,13 @@ set -xe
 pwd
 env
 
-cf login -a $cf-api -u $cf-username -p $cf-password -o "$cf-organization" -s "$cf-space" --skip-ssl-validation
+cf login -a $cf_api -u $cf_username -p $cf_password -o "$cf_organization" -s "$cf_space" --skip-ssl-validation
 
 cf apps
 
 set +e
 
-cf apps | grep "service" | grep green
+cf apps | grep $app-preffix | grep green
 
 if [ $? -eq 0 ]
 then
