@@ -35,7 +35,7 @@ public class PrdController {
 	@HystrixCommand
 	@RequestMapping("/v")
 	public String showVersion() {
-		return "v3";
+		return "v5";
 	}
 
 }
