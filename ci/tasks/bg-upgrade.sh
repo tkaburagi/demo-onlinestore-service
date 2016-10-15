@@ -27,8 +27,12 @@ cf routes
 
 echo "Removing previous main app route that pointed to $CURRENT_APP_HOSTNAME instance"
 
+
+sleep 30; #for demo
+
 set +e
 cf unmap-route $CURRENT_APP_HOSTNAME $app-domain --hostname $app-preffix
+cf unmap-route $NEXT_APP_HOSTNAME $app-domain --hostname $app-preffix-temp
 set -e
 
 echo "Routes updated"

@@ -31,4 +31,10 @@ public class PrdController {
 		return "killed!";
 	}
 
+	@HystrixCommand
+	@RequestMapping("/v")
+	public String showVersion() {
+		return "v1";
+	}
+
 }
