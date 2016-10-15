@@ -3,7 +3,7 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: java
+    repository: appropriate/curl
     tag: 8-jdk-alpine    
 inputs:
   - name: demo-onlinestore-service
