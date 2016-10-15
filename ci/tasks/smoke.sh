@@ -1,5 +1,8 @@
 #!/bin/sh
 
+sudo apt-get update
+sudo apt-get install curl
+
 sleep 10
 
 i=0

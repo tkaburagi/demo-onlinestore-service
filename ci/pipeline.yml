@@ -56,6 +56,16 @@ jobs:
         passed: [ unit-test ]
       - task: build
         file: demo-onlinestore-service/ci/tasks/build.yml
+      -taks: get-currentapp
+        file: demo-onlinestore-service/ci/tasks/get-currentapp.yml
+        params:
+           cf-api: {{cf-api}}
+           cf-username: {{cf-username}}
+           cf-password: {{cf-password}}
+           cf-organization: {{cf-org}}
+           cf-space: {{cf-space}}
+      -taks: edit-manifest
+        file: demo-onlinestore-service/ci/tasks/edit-manifest.yml
       - put: upload-artifact
         params: 
           file: build/demo-onlinestore-service.jar
