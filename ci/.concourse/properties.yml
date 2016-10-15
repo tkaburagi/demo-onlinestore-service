@@ -11,4 +11,4 @@ cf-password: pass
 cf-org: pcfdev-org
 cf-space: pcfdev-space
 app-domain: local.pcfdev.io
-app-preffix: scs-demo-onlinestore-service
+app-preffix: demo-onlinestore-service

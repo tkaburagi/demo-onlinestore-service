@@ -94,5 +94,23 @@ jobs:
       - get: demo-onlinestore-service
         trigger: true
         passed: [ smoke-test ]
+      ##現在デプロイされているアプリのバージョンを取得し、テキストファイルに保存する
+      - task: get-currentapp
+        file: demo-onlinestore-service/ci/tasks/get-currentapp.yml
+        params:
+          cf_api: {{cf-api}}
+          cf_username: {{cf-username}}
+          cf_password: {{cf-password}}
+          cf_organization: {{cf-org}}
+          cf_space: {{cf-space}}
+          app_preffix: {{app-preffix}}
       - task: bg-upgrade
         file: demo-onlinestore-service/ci/tasks/bg-upgrade.yml
+        params: 
+          cf_api: {{cf-api}}
+          cf_username: {{cf-username}}
+          cf_password: {{cf-password}}
+          cf_organization: {{cf-org}}
+          cf_space: {{cf-space}}
+          app_preffix: {{app-preffix}}
+          app_domain: {{app-domain}}

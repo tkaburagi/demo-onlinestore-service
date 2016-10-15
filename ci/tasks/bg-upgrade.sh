@@ -3,25 +3,22 @@ set -xe
 pwd
 env
 
-cf api $cf-api --skip-ssl-validation
+cf api $cf_api --skip-ssl-validation
 
-cf login -u $cf-username -p $cf-password -o "$cf-org" -s "$cf-space"
+cf login -u $cf_username -p $cf_password -o "$cf_org" -s "$cf_space"
 
 cf apps
 
 cf routes
 
-export app-domain=$app-domain
-export app-preffix=$app-preffix
-
 export NEXT_APP_COLOR=$(cat ./current-app-info/next-app.txt)
-export NEXT_APP_HOSTNAME=$NEXT_APP_COLOR-$PWS_APP_SUFFIX
+export NEXT_APP_NAME=$NEXT_APP_COLOR-$app_preffix
 
 export CURRENT_APP_COLOR=$(cat ./current-app-info/current-app.txt)
-export CURRENT_APP_HOSTNAME=$CURRENT_APP_COLOR-$PWS_APP_SUFFIX
+export CURRENT_APP_NAME=$CURRENT_APP_COLOR-$app_preffix
 
 echo "Mapping main app route to point to $NEXT_APP_HOSTNAME instance"
-cf map-route $NEXT_APP_HOSTNAME $app-domain --hostname $app-preffix
+cf map-route $NEXT_APP_NAME $app_domain --hostname $app_preffix
 
 cf routes
 
@@ -31,8 +28,8 @@ echo "Removing previous main app route that pointed to $CURRENT_APP_HOSTNAME ins
 sleep 30; #for demo
 
 set +e
-cf unmap-route $CURRENT_APP_HOSTNAME $app-domain --hostname $app-preffix
-cf unmap-route $NEXT_APP_HOSTNAME $app-domain --hostname $app-preffix-temp
+cf unmap-route $CURRENT_APP_NAME $app_domain --hostname $app_preffix
+cf unmap-route $NEXT_APP_NAME $app_domain --hostname $app_preffix-temp
 set -e
 
 echo "Routes updated"
