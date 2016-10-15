@@ -1,3 +1,4 @@
+
 package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class PrdController {
 	@HystrixCommand
 	@RequestMapping("/v")
 	public String showVersion() {
-		return "v2";
+		return "v3";
 	}
 
 }
