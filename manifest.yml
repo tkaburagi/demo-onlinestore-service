@@ -1,6 +1,6 @@
 ---
 applications:
-- name: scs-demo-onlinestore-service
+- name: APPLICATION_NAME
   host: scs-demo-onlinestore-service-temp
   memory: 800M
   instances: 1

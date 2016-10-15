@@ -1,0 +1,19 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: pivotalservices/docker-concourse-cf-tools
+    tag: "latest"
+
+
+inputs:
+- name: demo-onlinestore-service
+- name: current-app-info
+
+outputs:
+- name: app-manifest-output
+
+run:
+  path: demo-onlinestore-service/ci/tasks/edit-manifest.sh

@@ -56,7 +56,8 @@ jobs:
         passed: [ unit-test ]
       - task: build
         file: demo-onlinestore-service/ci/tasks/build.yml
-      -taks: get-currentapp
+      ##現在デプロイされているアプリのバージョンを取得し、テキストファイルに保存する
+      - task: get-currentapp
         file: demo-onlinestore-service/ci/tasks/get-currentapp.yml
         params:
            cf-api: {{cf-api}}
@@ -64,7 +65,8 @@ jobs:
            cf-password: {{cf-password}}
            cf-organization: {{cf-org}}
            cf-space: {{cf-space}}
-      -taks: edit-manifest
+      ##保存されたテキストがいるを使ってmanifest.ymlを編集する
+      - task: edit-manifest
         file: demo-onlinestore-service/ci/tasks/edit-manifest.yml
       - put: upload-artifact
         params: 
