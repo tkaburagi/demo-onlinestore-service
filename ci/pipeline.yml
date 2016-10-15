@@ -67,9 +67,9 @@ jobs:
   - name: smoke-test
     public: true
     plan:
-     # - get: cf-push
-     #   trigger: true
-     #   passed: [ build-artifact ]
+      - get: cf-push
+        trigger: true
+        passed: [ build-artifact ]
       - put: demo-onlinestore-service
       - task: smoke-test
         file: demo-onlinestore-service/ci/tasks/smoke.yml
