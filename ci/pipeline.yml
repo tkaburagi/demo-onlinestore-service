@@ -26,7 +26,7 @@ resources:
           "client_id": "103698173895213728444",
           "type": "service_account"
         }
-      regexp: concourse/demo.jar
+      regexp: concourse/demo-onlinestore-service.jar
 
   - name: cf-push
     type: cf
