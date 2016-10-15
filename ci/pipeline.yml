@@ -65,15 +65,16 @@ jobs:
            cf-password: {{cf-password}}
            cf-organization: {{cf-org}}
            cf-space: {{cf-space}}
-      ##保存されたテキストがいるを使ってmanifest.ymlを編集する
+      ##保存されたテキストを使ってmanifest.ymlを編集する
       - task: edit-manifest
         file: demo-onlinestore-service/ci/tasks/edit-manifest.yml
       - put: upload-artifact
         params: 
           file: build/demo-onlinestore-service.jar
+      ##cf push
       - put: cf-push
         params:
-          manifest: demo-onlinestore-service
+          manifest: app-manifest-output/manifest.yml
           path: build/demo-onlinestore-service.jar
 
   - name: smoke-test

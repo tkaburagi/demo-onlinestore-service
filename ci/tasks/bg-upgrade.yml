@@ -7,11 +7,10 @@ image_resource:
     repository: pivotalservices/docker-concourse-cf-tools
     tag: "latest"
 
+
 inputs:
 - name: demo-onlinestore-service
-
-outputs:
 - name: current-app-info
 
 run:
-  path: demo-onlinestore-service/ci/tasks/get-currentapp.sh
+  path: demo-onlinestore-service/ci/tasks/bg-upgrade.sh
