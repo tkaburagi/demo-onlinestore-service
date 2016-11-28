@@ -1,3 +1,4 @@
 #!/bin/sh
 cd demo-onlinestore-service
-./mvnw test
+#./mvnw test
+sleep 30 # for demo

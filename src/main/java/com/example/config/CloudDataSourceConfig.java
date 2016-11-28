@@ -1,6 +1,5 @@
 package com.example.config;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.cloud.config.java.AbstractCloudConfig;
@@ -15,4 +14,5 @@ public class CloudDataSourceConfig extends AbstractCloudConfig {
     public DataSource dataSource() {
         return connectionFactory().dataSource();
     }
+
 }

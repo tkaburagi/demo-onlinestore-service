@@ -1,24 +1,18 @@
 package com.example.repo;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.example.model.Product;
+import com.example.model.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize
 @RepositoryRestResource(collectionResourceRel = "product", path = "product")
-public interface PrdRepository extends PagingAndSortingRepository<Product, Long>{
-	// @RequestLine("GET /products?page={page}&size={size}")
-	public Page<Product> findAll(Pageable pageable);
-
-	// @RestResource(exported = false)
-	// Product findById(int id);
-	//
-	// @RestResource(path = "name", rel = "name")
-	// Page<Product> findByNameIgnoreCase(@Param("q") String name, Pageable
-	// pageable);
-
+public interface PrdRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
+	
+	public List<Product> findAll();
+	public List<Product> findByNameContaining(String name);
 }
