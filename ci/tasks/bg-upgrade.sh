@@ -24,7 +24,6 @@ cf routes
 
 echo "Removing previous main app route that pointed to $CURRENT_APP_HOSTNAME instance"
 
-
 sleep 30; #for demo
 
 set +e
