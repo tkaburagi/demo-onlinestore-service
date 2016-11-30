@@ -40,11 +40,11 @@ public class PrdController {
 		return repo.findAll();
 	}
 	
-	@HystrixCommand
-	@RequestMapping("/search")
-	public List<Product> getPrdsByName(@RequestParam("name") String name) {
-		return repo.findByNameContaining(name);
-	}
+//	@HystrixCommand
+//	@RequestMapping("/search")
+//	public List<Product> getPrdsByName(@RequestParam("name") String name) {
+//		return repo.findByNameContaining(name);
+//	}
 	
 	@HystrixCommand
 	@RequestMapping("/kill")
