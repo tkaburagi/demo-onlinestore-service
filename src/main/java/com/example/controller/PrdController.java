@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -73,5 +72,16 @@ public class PrdController {
 		
 		return  "Service App = " + vcap_app.get("instance_index").asText()  + " (version = " + version+ ")" + "," + resultFromUser;
 	}
-
+	
+	@RequestMapping("/getlocalinfo")
+	public String[] getLocalInfo() throws JsonProcessingException, IOException {
+		String vcap = System.getenv("VCAP_APPLICATION");
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode vcap_app = mapper.readTree(vcap);
+		String[] list = new String[3];
+		list[0] = System.getenv("CF_INSTANCE_ADDR");
+		list[1] = System.getenv("VERSION");
+		list[2] = vcap_app.get("instance_index").asText();
+		return list;
+	}
 }
