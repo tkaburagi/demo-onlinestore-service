@@ -1,7 +1,6 @@
 ---
 applications:
 - name: APPLICATION_NAME
-  host: service
   memory: 1G
   domain: cfapps.haas-70.pez.pivotal.io
   instances: 1
