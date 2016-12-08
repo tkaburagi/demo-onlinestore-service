@@ -2,6 +2,7 @@
 applications:
 - name: APPLICATION_NAME
   memory: 1G
+  host: demo-onlinestore-service-temp
   domain: cfapps.haas-70.pez.pivotal.io
   instances: 1
   services:
