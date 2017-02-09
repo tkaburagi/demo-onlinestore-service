@@ -3,7 +3,7 @@ applications:
 - name: APPLICATION_NAME
   memory: 1G
   host: demo-onlinestore-service-temp
-  domain: cfapps.haas-70.pez.pivotal.io
+  domain: cfapps.io
   instances: 1
   services:
    - service-registry
@@ -13,5 +13,5 @@ applications:
   env:
    SPRING_PROFILES_ACTIVE: cloud 
    #CF_TARGET: https://api.local.pcfdev.io 
-   CF_TARGET: https://api.run.haas-70.pez.pivotal.io
+   CF_TARGET: https://api.run.pivotal.io
    VERSION: 2
