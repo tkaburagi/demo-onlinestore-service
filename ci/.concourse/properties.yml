@@ -5,5 +5,5 @@ cf-username: tkaburagi@pivotal.io
 cf-password: keiodai
 cf-org: labs-playground
 cf-space: "Takayuki Kaburagi"
-app-domain: cfapps.io
+app-domain: "cfapps.io"
 app-preffix: demo-onlinestore-service
