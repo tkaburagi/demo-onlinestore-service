@@ -14,4 +14,4 @@ applications:
    SPRING_PROFILES_ACTIVE: cloud 
    #CF_TARGET: https://api.local.pcfdev.io 
    CF_TARGET: https://api.run.pivotal.io
-   VERSION: 4
+   VERSION: 5
